@@ -23,7 +23,7 @@ $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
 
-// $app->withFacades();
+ $app->withFacades();
 
 // $app->withEloquent();
 
@@ -66,15 +66,15 @@ $app->configure('app');
 | Register Middleware
 |--------------------------------------------------------------------------
 |
-| Next, we will register the middleware with the application. These can
+| Next, we will register the middleware with th$app->withFacades();e application. These can
 | be global middleware that run before and after each request into a
 | route or middleware that'll be assigned to some specific routes.
 |
 */
 
-// $app->middleware([
-//     App\Http\Middleware\ExampleMiddleware::class
-// ]);
+ $app->middleware([
+     \App\Http\Middleware\CorsMiddleware::class
+ ]);
 
 // $app->routeMiddleware([
 //     'auth' => App\Http\Middleware\Authenticate::class,
