@@ -13,8 +13,8 @@ class BitcoinPriceController extends BaseController
     {
         try {
             $validator = Validator::make($request->all(), [
-                'startDate' => 'date|date_format:Y-m-d',
-                'endDate' => 'date|after:startDate|date_format:Y-m-d|before_or_equal:now'
+                'startDate' => 'required|date|date_format:Y-m-d',
+                'endDate' => 'required|date|after:startDate|date_format:Y-m-d|before_or_equal:now'
             ]);
             if ($validator->fails()) {
                 return ['success' => false, 'message' => $validator->errors()];
@@ -28,7 +28,7 @@ class BitcoinPriceController extends BaseController
             }
             $response = BitcoinPrice::getBitcoinData($filters);
             if ($response) {
-                return ['success' => true, 'data' => $response->bpi];
+                return ['success' => true, 'data' => (array) $response->bpi];
             }
             return ['success' => false, 'message' => 'Data fetch error'];
         } catch (\Exception $exception) {
